@@ -1,6 +1,9 @@
 .carousel-item {
-  height: 300px;
+  min-height: 600px;
   background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.carousel-caption {
+  bottom: 33%;
 }

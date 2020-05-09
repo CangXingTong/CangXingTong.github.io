@@ -2,39 +2,90 @@
 
 <html>
 <head>
-  <title>WindomXP 技术研究所</title>
+  <title>武装领域 -ArmyArea-</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="author" content="CangXingTong" />
+  <meta name="description" content="ArmyArea" />
   <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.staticfile.org/showdown/1.9.0/showdown.min.js"></script>
   <script src="https://cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
-  <script src="script.js"></script>
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <header class="navbar navbar-expand-sm bg-dark navbar-dark" id="header">
     <nav class="container">
-      <span class="navbar-brand">WindomXP 技术研究所</span>
+      <a class="navbar-brand" href="#header">武装领域 -ArmyArea-</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item" v-for="menu in menus">
+            <a class="nav-link" v-bind:href="menu.href">{{menu.title}}</a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
-  <!--#include file="info.htm"-->
+  <div id="main">
+    <!-- 轮播 -->
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" v-for="(image,i) in carousel.images"
+             v-bind:class="{ active: i==1 }"
+             v-bind:style="{ 'background-image': 'url(\'' + image + '\')'}">
+        </div>
+        <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+        <div class="carousel-caption">
+          <button type="button" class="btn btn-success btn-lg">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <span>立即下载</span>
+          </button>
+          <p>
+            <small>{{carousel.small}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
 
-  <div class="container p-4" id="Message">
-    <h3 class="text-center">公告</h3>
-    <div class="m-4" onload="this.html(CompileMarkDown('### 123456789'))">
-      <p>因近段时间服务器常常大姨妈，在大姨妈结束前网站将暂时关闭，再次开通时间待定</p>
-      <p>不过无所谓啦，反正这个网站日访问量只有个位数（笑</p>
-      <p>欢迎大家加入联机群：480359978</p>
-      <p>→_→ <a href="https://www.bilibili.com/video/av69795745">神秘地址</a></p>
+    <div id="updatelog" class="container p-4">
+      <h2>{{updatelog.title}}</h2>
+
+    </div>
+
+    <div id="feature" class="container p-4">
+      <h1 class="text-center m-1">{{feature.title}}</h1>
+      <div class="row">
+        <div class="col-sm-4 text-center">
+          <h3><i class="fa fa-gamepad" aria-hidden="true"></i></h3>
+          <p>sdf</p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <p>sdf</p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <p>sdf</p>
+        </div>
+      </div>
     </div>
   </div>
-  <footer class="navbar bg-light">
-    <div class="mx-auto">Copyright ©2019 cangxingtong@qq.com</div>
+
+  <footer id="footer" class="navbar bg-light">
+    <div class="mx-auto">Copyright ©{{year}} {{author}}({{email}})</div>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
